@@ -1,0 +1,23 @@
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        cache:
+          region:
+            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+          use_second_level_cache: true
+          use_query_cache: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blogdb_test
+    username: root
+    password: my-secret-pw
+
+
+cors:
+  allowed-origins-port: 3000
