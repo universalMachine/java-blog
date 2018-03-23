@@ -4,6 +4,7 @@ import com.wang.blog.DTO.BoardDTO;
 import com.wang.blog.DTO.PostDTO;
 import com.wang.blog.DTO.TopicDTO;
 import com.wang.blog.DTO.UserDTO;
+import com.wang.blog.Dao.PostDao;
 import com.wang.blog.domain.*;
 import com.wang.blog.repository.BoardRepository;
 import com.wang.blog.repository.PostRepository;
@@ -54,7 +55,7 @@ public class DTOService {
 
     protected Board convertBoardDtoToPost(BoardDTO boardDTO){
 
-        User user = userService.getUserByUserName(userService.getLoggedUserName());
+        User user = userService.getLoginedOrDefaultUser();
 
         Board board  =  new Board();
         List<User> list = new ArrayList();
@@ -97,6 +98,15 @@ public class DTOService {
         return topicDto;
     }
 
+    protected PostDTO convertPostToPostDTO(Post post){
+        PostDTO postDTO = new PostDTO();
+        postDTO.setTopicId(post.getTopic().getTopicId());
+        postDTO.setPostId(post.getPostId());
+        postDTO.setPostText(post.getPostText());
+        postDTO.setPostTitle(post.getPostTitle());
+        return postDTO;
+
+    }
     protected Post convertPostDtoToPost(PostDTO postDto,Integer postType){
         Post post;
         if(postType == 1){

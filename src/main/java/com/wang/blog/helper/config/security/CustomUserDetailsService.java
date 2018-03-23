@@ -7,6 +7,7 @@ import com.wang.blog.repository.PrivilegeRepository;
 import com.wang.blog.repository.RoleRepository;
 import com.wang.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@EnableCaching(proxyTargetClass = true)
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired

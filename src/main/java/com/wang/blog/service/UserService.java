@@ -38,11 +38,9 @@ public class UserService {
     private  RoleRepository roleRepository;
 
     @Autowired
-    private IAuthenticationFacade iAuthenticationFacade;
+    private AuthenticationService authenticationService;
 
-    public String getLoggedUserName(){
-        return iAuthenticationFacade.getAuthentication().getName();
-    }
+
 
     public User getUserByUserName(String userName){
         return userRepository.getUserByUserName(userName);
@@ -92,6 +90,14 @@ public class UserService {
 
     public User getDefault(){
         return userRepository.getOne(1);
+    }
+
+    public User getLoginedOrDefaultUser(){
+        if(authenticationService.isLogined()){
+            return userRepository.getUserByUserName(authenticationService.getUserName());
+        }else {
+            return getDefault();
+        }
     }
 
 }

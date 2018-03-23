@@ -11,6 +11,7 @@ import com.wang.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class BoardManageController {
     /**
      * 列出分页的板块
      */
+    @Transactional
     @GetMapping("/board")
     public Result listPagedBoard(@RequestParam("pageSize") Integer pageSize,@RequestParam("pageNum") Integer pageNo){
         Result result = new Result();
@@ -83,6 +85,7 @@ public class BoardManageController {
      * 增加版块
      *
      */
+    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/board/add")
     public Result addBoard(@RequestBody BoardDTO boardDTO){

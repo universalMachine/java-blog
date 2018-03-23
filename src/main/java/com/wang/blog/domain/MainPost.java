@@ -1,10 +1,15 @@
 package com.wang.blog.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
+
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@DiscriminatorColumn(name = "post_type", discriminatorType = DiscriminatorType.INTEGER)
+@Polymorphism(type = PolymorphismType.EXPLICIT)
 @DiscriminatorValue("2")
 public class MainPost extends Post{
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)

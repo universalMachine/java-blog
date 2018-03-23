@@ -53,9 +53,15 @@ public class BaseDao {
             System.out.println();
         }*/
         //PageRequest humanPageRequest = new PageRequest(pageNo,pageSize);
+        //session.close();
         return new PageImpl(list,pageRequest,totalCount);
     }
 
+
+    protected <T> List<T> qurey(String hql,Class<T> klass,Object ...values){
+        Assert.hasText(hql,"hql should exist");
+        return this.createQuery(getSession(),hql,values).list();
+    }
 
     private int regularPageNoToMachinePageNo(int pageNo){
         return pageNo - 1;
@@ -112,7 +118,8 @@ public class BaseDao {
      *
      * @param values 可变参数.
      */
-    private Query createQuery(Session session,String hql, Object... values) {
+
+    protected Query createQuery(Session session,String hql, Object... values) {
         Assert.hasText(hql,"hql is null");
         Query query = session.createQuery(hql);
         for (int i = 0; i < values.length; i++) {
@@ -122,7 +129,7 @@ public class BaseDao {
     }
 
 
-    private  Session getSession() {
+    protected   Session getSession() {
         Session session;
 
         try {

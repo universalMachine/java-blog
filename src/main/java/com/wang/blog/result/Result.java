@@ -1,9 +1,12 @@
 package com.wang.blog.result;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.wang.blog.domain.User;
+
+import java.io.IOException;
 
 public class Result {
     private Integer returnCode;
@@ -15,7 +18,7 @@ public class Result {
 
     //private User user;
 
-    //private JSONWrappedObject
+    private JsonNode extra;
 
     public Result() {
     }
@@ -44,6 +47,17 @@ public class Result {
         this.data = data;
     }
 
+    public JsonNode getExtra() {
+        return extra;
+    }
 
+    public void setExtra(JsonNode extra) {
+        this.extra = extra;
+    }
 
+    public void setExtra(String jsonStrSchema,Object ...values) throws IOException{
+        String jsonStr = String.format(jsonStrSchema,values);
+        ObjectMapper objectMapper = new ObjectMapper();
+        this.extra = objectMapper.readTree(jsonStr);
+    }
 }

@@ -44,9 +44,12 @@
     <logger name="org.hibernate" level="trace">
         <appender-ref ref="CONSOLE"/>
     </logger>
-    <!--<logger name="org.springframework.transaction" level="TRACE">
+    <!--<logger name="org.apache.tomcat" level="trace">
         <appender-ref ref="CONSOLE"/>
     </logger>-->
+    <logger name="org.springframework.transaction" level="TRACE">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 
     <logger name="org.springframework.security" level="Warn">
         <appender-ref ref="CONSOLE"/>

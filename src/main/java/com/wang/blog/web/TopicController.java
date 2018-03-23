@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.Format;
+
 
 @RestController
 public class TopicController  {
@@ -46,6 +48,7 @@ public class TopicController  {
             Data<Page<TopicDTO>> pagedTopicsData = new Data<>(pagedTopicDTOs);
             result.setReturnCode(ReturnCode.success.getValue());
             result.setData(pagedTopicsData);
+            result.setExtra("{\"boardId\":%d}",boardId);
         }catch (Exception e){
             logger.debug(e.getMessage());
         }finally {
