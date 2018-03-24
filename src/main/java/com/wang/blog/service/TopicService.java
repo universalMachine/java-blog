@@ -80,6 +80,7 @@ public class TopicService {
 
         topic.setTopicReplies(0);
         topic.setTopicViews(0);
+        topic.setTotalPostNum(0);
         topic.setLastPostTime(dateTimeService.getNowBeiJingDateTime());
         topic.setCreateTime(dateTimeService.getNowBeiJingDateTime());
 
@@ -92,6 +93,7 @@ public class TopicService {
         post.setCreateTime(topic.getCreateTime());
         post.setUser(topic.getAuthor());
         post.setTopic(topic);
+        post.setBoard(topic.getBoard());
         topic.setTopicDesc(genTopicDesc(post.getPostText()));
 
         topicRepository.save(topic);

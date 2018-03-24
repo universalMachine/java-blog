@@ -46,6 +46,8 @@ public class Topic extends BaseDomain{
     @Column(nullable = false)
     private Integer topicReplies;
 
+    private long totalPostNum;
+
     @Lob
     private String topicDesc;
 
@@ -63,6 +65,14 @@ public class Topic extends BaseDomain{
     }
 
     public Topic() {
+    }
+
+    public long getTotalPostNum() {
+        return totalPostNum;
+    }
+
+    public void setTotalPostNum(long totalPostNum) {
+        this.totalPostNum = totalPostNum;
     }
 
     public String getTopicDesc() {

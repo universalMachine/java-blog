@@ -34,6 +34,7 @@ public class Post extends BaseDomain {
 
     private String postTitle;
 
+    private long replyFloor;
 
     private LocalDateTime createTime;
 
@@ -47,6 +48,14 @@ public class Post extends BaseDomain {
         this.postText = postText;
         this.postTitle = postTitle;
         this.createTime = createTime;
+    }
+
+    public long getReplyFloor() {
+        return replyFloor;
+    }
+
+    public void setReplyFloor(long replyFloor) {
+        this.replyFloor = replyFloor;
     }
 
     public Integer getPostId() {

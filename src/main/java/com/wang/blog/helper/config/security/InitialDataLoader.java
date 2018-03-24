@@ -42,7 +42,7 @@ public class InitialDataLoader implements
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-     /*   if (alreadySetup.get())
+        if (alreadySetup.get())
             return;
         Privilege readPrivilege
                 = createPrivilegeIfNotFound("READ_PRIVILEGE");
@@ -55,7 +55,7 @@ public class InitialDataLoader implements
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 
 
-        alreadySetup.set(true);*/
+        alreadySetup.set(true);
     }
 
     @Transactional

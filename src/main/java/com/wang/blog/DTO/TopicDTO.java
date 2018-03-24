@@ -19,7 +19,7 @@ public class TopicDTO extends BaseDomain {
 
     private LocalDateTime lastPostTime;
 
-
+    private Long totalPostNum;
 
     private Integer topicViews;
 
@@ -30,6 +30,14 @@ public class TopicDTO extends BaseDomain {
     private PostDTO mainPost;
 
     public TopicDTO() {
+    }
+
+    public Long getTotalPostNum() {
+        return totalPostNum;
+    }
+
+    public void setTotalPostNum(Long totalPostNum) {
+        this.totalPostNum = totalPostNum;
     }
 
     public String getTopicDesc() {

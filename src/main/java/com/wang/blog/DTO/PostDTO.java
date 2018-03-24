@@ -29,9 +29,17 @@ public class PostDTO extends BaseDomain {
 
     private LocalDateTime createTime;
 
-
+    private long replyFloor = 0;
 
     public PostDTO() {
+    }
+
+    public long getReplyFloor() {
+        return replyFloor;
+    }
+
+    public void setReplyFloor(long replyFloor) {
+        this.replyFloor = replyFloor;
     }
 
     public Integer getPostType() {

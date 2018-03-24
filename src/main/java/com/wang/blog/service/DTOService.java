@@ -104,6 +104,8 @@ public class DTOService {
         postDTO.setPostId(post.getPostId());
         postDTO.setPostText(post.getPostText());
         postDTO.setPostTitle(post.getPostTitle());
+        postDTO.setCreateTime(post.getCreateTime());
+        postDTO.setReplyFloor(post.getReplyFloor());
         return postDTO;
 
     }

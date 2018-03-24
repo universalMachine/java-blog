@@ -8,6 +8,7 @@ import com.wang.blog.repository.BoardRepository;
 import com.wang.blog.result.Data;
 import com.wang.blog.result.Result;
 import com.wang.blog.service.BoardService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,7 +28,8 @@ public class BoardManageController {
 
     @Autowired
     private BoardService boardService;
-
+    @Autowired
+    private Logger logger;
 
     /**
      * 列出论坛模块下的主题帖子
@@ -41,7 +43,7 @@ public class BoardManageController {
     /**
      * 列出分页的板块
      */
-    @Transactional
+
     @GetMapping("/board")
     public Result listPagedBoard(@RequestParam("pageSize") Integer pageSize,@RequestParam("pageNum") Integer pageNo){
         Result result = new Result();
@@ -85,7 +87,7 @@ public class BoardManageController {
      * 增加版块
      *
      */
-    @Transactional
+
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/board/add")
     public Result addBoard(@RequestBody BoardDTO boardDTO){
@@ -102,6 +104,23 @@ public class BoardManageController {
             result.setReturnMessage("添加失败，请重新添加");
         }finally {
             return result;
+        }
+    }
+
+    /**
+     * 删除版块
+     */
+    @DeleteMapping("/board/delete")
+    public Result deleteBoard(@RequestParam Integer boardId){
+        Result result = new Result();
+        try{
+            boardService.deleteBoardById(boardId);
+            result.setExtra("{\"boardId\":%d}",boardId);
+            result.setReturnCode(ReturnCode.success.getValue());
+        }catch (Exception e){
+            logger.debug(e.getMessage());
+        }finally {
+            return  result;
         }
     }
 

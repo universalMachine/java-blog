@@ -61,28 +61,33 @@ public class PostService {
     }
 
     @Transactional
-    public Post addPost(PostDTO postDTO){
-
-
-        Post post = dtoService.convertPostDtoToPost(postDTO,2);
-
-        postRepository.save(post);
-
+    public Post addPost(Post post){
 
         User user = userService.getLoginedOrDefaultUser();
         userService.updateCredit(user, USER_CREDIT.ADD_POST.getUpdateValue());
+        post.setUser(user);
 
         Topic topic = post.getTopic();
         topic.setTopicReplies(topic.getTopicReplies()+1);
+        topic.setTotalPostNum(topic.getTotalPostNum()+1);
         topic.setLastPostTime(dateTimeService.getNowBeiJingDateTime());
 
+        post.setReplyFloor(topic.getTotalPostNum());
         post.setBoard(topic.getBoard());
+
+        post.setPostTitle(topic.getTopicTitle());
 
         post.setCreateTime(dateTimeService.getNowBeiJingDateTime());
 
+        postRepository.save(post);
         return post;
         //topic处于Hibernate受管状态，无须显式更新
 
+    }
+
+    @Transactional
+    public PostDTO addPostDTO(PostDTO postDTO){
+        return dtoService.convertPostToPostDTO(addPost(dtoService.convertPostDtoToPost(postDTO,2)));
     }
 
     public Page<Post> getPagedReplyPost(Integer pageNo,Integer pageSize,Integer topicId){
@@ -115,11 +120,11 @@ public class PostService {
 
 
     @Transactional
-    public void deletePostById(int postId){
+    public Post deletePostById(int postId){
         Post post = postRepository.getOne(postId);
 
 
-        postRepository.delete(post);
+
 
 
         Topic topic = post.getTopic();
@@ -128,7 +133,8 @@ public class PostService {
         User user = post.getUser();
         userService.updateCredit(user,-20);
 
-
+        postRepository.delete(post);
+        return post;
     }
 
 

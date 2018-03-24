@@ -48,6 +48,7 @@ public class PostDao extends BaseDao {
     }
 
 
+
     @Transactional
     public Set<Post> getPostsByTopicId(Integer topicId){
         return topicRepository.getOne(topicId).getPosts();

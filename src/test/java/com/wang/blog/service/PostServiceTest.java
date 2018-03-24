@@ -45,7 +45,7 @@ public class PostServiceTest extends BaseTest {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
-                postService.addPost(postDTO);
+                postService.addPostDTO(postDTO);
             }
         });
 

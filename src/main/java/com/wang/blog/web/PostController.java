@@ -1,11 +1,13 @@
 package com.wang.blog.web;
 
 import com.wang.blog.DTO.PostDTO;
+import com.wang.blog.domain.Post;
 import com.wang.blog.helper.enums.ReturnCode;
 import com.wang.blog.result.Data;
 import com.wang.blog.result.Result;
 import com.wang.blog.service.DTOService;
 import com.wang.blog.service.PostService;
+import org.hibernate.loader.custom.Return;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -57,7 +59,29 @@ public class PostController {
     @PostMapping("/post/add")
     protected Result addPost(@RequestBody PostDTO postDTO){
         Result result = new Result();
-        postService.addPost(postDTO);
-        return result;
+        try{
+            PostDTO postDTOResult = postService.addPostDTO(postDTO);
+            result.setData(new Data<PostDTO>(postDTOResult));
+            result.setReturnCode(ReturnCode.success.getValue());
+        }catch (Exception e){
+            logger.debug(e.getMessage());
+        }finally {
+            return result;
+        }
+    }
+
+    @DeleteMapping("post/delete")
+    protected Result deletePost(@RequestParam("postId") Integer postId){
+        Result result = new Result();
+        try{
+            Post deletedPost = postService.deletePostById(postId);
+            result.setExtra("{\"postId\":%d,\"topicId\":%d}",postId,deletedPost.getTopic().getTopicId());
+            result.setReturnCode(ReturnCode.success.getValue());
+        }catch (Exception e){
+            logger.debug(e.getMessage());
+        }finally {
+            return result;
+        }
+
     }
 }
