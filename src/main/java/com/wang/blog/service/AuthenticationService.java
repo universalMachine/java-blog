@@ -1,6 +1,6 @@
 package com.wang.blog.service;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import com.wang.blog.helper.config.security.IAuthenticationFacade;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
