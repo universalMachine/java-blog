@@ -1,18 +1,13 @@
 package com.wang.blog.helper.config.security;
 
-import ch.qos.logback.core.util.ContentTypeUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wang.blog.result.Result;
-import javafx.application.Application;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
-import org.springframework.util.MimeType;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletException;
