@@ -24,7 +24,9 @@ repositories {
     mavenLocal()
 	mavenCentral()
 }
-
+bootRun {
+    systemProperties = System.properties
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
