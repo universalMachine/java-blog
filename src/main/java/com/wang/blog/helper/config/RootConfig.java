@@ -27,5 +27,12 @@ public class RootConfig {
         return DataSourceBuilder.create().build();
     }
 
+    @Bean(name="dataSource")
+    @Profile("prod")
+    @ConfigurationProperties(prefix="spring.datasource")
+    public javax.sql.DataSource prodDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
 
 }
