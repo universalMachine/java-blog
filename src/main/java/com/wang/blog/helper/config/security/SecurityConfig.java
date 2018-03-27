@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Value("${cors.allowed-origins-port}")
     private String allowedOriginsPort;
+    @Value("${cors.allowed-origins-host}")
+    private String allowedOriginsHost;
 
     @Autowired
     @Qualifier("dataSource")
@@ -91,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:"+allowedOriginsPort,"http://www.dev.com:"+allowedOriginsPort));
+        configuration.setAllowedOrigins(Arrays.asList(allowedOriginsHost+":"+allowedOriginsPort,"http://www.dev.com:"+allowedOriginsPort));
         configuration.setAllowedMethods(Arrays.asList(HttpMethod.OPTIONS.name(),"GET","POST",HttpMethod.DELETE.name()));
         // setAllowCredentials(true) is important, otherwise:
         // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.

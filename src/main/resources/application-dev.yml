@@ -1,4 +1,3 @@
-
 spring:
   jpa:
     show-sql: true
@@ -33,13 +32,6 @@ spring:
     initial-size: 20
     initialize: true
 
-
-
-
-
-
-cors:
-  allowed-origins-port: 3000
 server:
   session:
     cookie:
@@ -47,3 +39,6 @@ server:
 
 
 
+cors:
+  allowed-origins-host: http://localhost
+  allowed-origins-port: 3000

@@ -1,3 +1,6 @@
+cors:
+  allowed-origins-host: http://learnjavaweb.com
+  allowed-origins-port: 80
 
 spring:
   jpa:
@@ -7,7 +10,6 @@ spring:
     properties:
       hibernate:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
-       # current_session_context_class: org.hibernate.context.internal.ThreadLocal‌​SessionContext
        # current_session_context_class: org.hibernate.context.internal.ThreadLocalSessionContext
         cache:
           region:
