@@ -1,6 +1,3 @@
-cors:
-  allowed-origins-host: http://learnjavaweb.com
-  allowed-origins-port: 80
 
 spring:
   jpa:
@@ -18,21 +15,25 @@ spring:
           use_query_cache: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/blogdb
+    url: jdbc:mysql://127.0.0.1:3306/blogdb?connectTimeout=0&socketTimeout=0&autoReconnect=true
     username: root
     password: QQAAZZ1wwssxx#
 
-    remove-abandoned: true
-    abandon-when-percentage-full: 80
-    remove-abandoned-timeout: 600
-    log-abandoned: true
 
-    max-age: 10000
-    min-idle: 5
+    #remove-abandoned: true
+    #abandon-when-percentage-full: 80
+   # remove-abandoned-timeout: 600
+   # log-abandoned: true
+
+   # max-age: 10000
+   # min-idle: 5
     #max-idle: 10
     #max-active: 10
 
     #initial-size: 20
     #initialize: true
 
+cors:
+    allowed-origins-host: http://learnjavaweb.com
+    allowed-origins-port: 80
 
