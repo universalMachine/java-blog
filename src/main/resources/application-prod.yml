@@ -15,7 +15,7 @@ spring:
           use_query_cache: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/blogdb?connectTimeout=0&socketTimeout=0&autoReconnect=true
+    url: jdbc:mysql://mysql.learnjavaweb.com:3306/blogdb?useSSL=false
     username: root
     password: QQAAZZ1wwssxx#
 
@@ -36,4 +36,4 @@ spring:
 cors:
     allowed-origins-host: http://learnjavaweb.com
     allowed-origins-port: 80
-
+    isOnlyHost: true

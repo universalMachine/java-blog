@@ -42,3 +42,4 @@ server:
 cors:
   allowed-origins-host: http://localhost
   allowed-origins-port: 3000
+  isOnlyHost: false
